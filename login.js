@@ -2,7 +2,7 @@
 lucide.createIcons();
 
 // Hardcoded password
-const CORRECT_PASSWORD = 'mettbach2024';
+const CORRECT_PASSWORD = 'mettbach2025';
 
 // Check if already logged in
 if (sessionStorage.getItem('isLoggedIn') === 'true') {

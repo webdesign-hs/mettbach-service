@@ -6,7 +6,7 @@ const CORRECT_PASSWORD = 'mettbach2025';
 
 // Check if already logged in
 if (sessionStorage.getItem('isLoggedIn') === 'true') {
-    window.location.href = 'index.html';
+    window.location.href = '/';
 }
 
 // Get form elements
@@ -46,7 +46,7 @@ loginForm.addEventListener('submit', (e) => {
         errorMessage.classList.add('hidden');
 
         // Redirect to main page
-        window.location.href = 'index.html';
+        window.location.href = '/';
     } else {
         // Show error message
         errorMessage.classList.remove('hidden');

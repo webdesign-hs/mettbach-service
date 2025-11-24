@@ -43,6 +43,15 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Login Check Script -->
+    <script>
+        // Check if user is logged in
+        if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+            // Redirect to login page if not logged in
+            window.location.href = 'login.html';
+        }
+    </script>
 </head>
 <body class="font-sans text-slate-600 bg-white antialiased selection:bg-brand-light selection:text-brand-primary">
 
@@ -70,6 +79,10 @@
                         <i data-lucide="phone" class="w-4 h-4"></i>
                         0123 / 456 789
                     </a>
+                    <button id="logout-btn" class="text-slate-400 hover:text-red-500 font-medium transition text-sm flex items-center gap-2">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                        Logout
+                    </button>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -85,6 +98,10 @@
                 <a href="#leistungen" class="block px-4 py-3 rounded-lg hover:bg-brand-surface text-brand-dark font-medium">Leistungen</a>
                 <a href="#vorteile" class="block px-4 py-3 rounded-lg hover:bg-brand-surface text-brand-dark font-medium">Vorteile</a>
                 <a href="#kontakt" class="block px-4 py-3 rounded-lg bg-brand-primary text-white font-bold text-center mt-4">Angebot anfordern</a>
+                <button id="logout-btn-mobile" class="w-full px-4 py-3 rounded-lg text-red-500 hover:bg-red-50 font-medium text-left flex items-center gap-2 mt-4 border border-red-200">
+                    <i data-lucide="log-out" class="w-4 h-4"></i>
+                    Logout
+                </button>
             </div>
         </div>
     </nav>

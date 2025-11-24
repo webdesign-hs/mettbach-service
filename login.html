@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mettbach Service</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Config for Brand Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            primary: '#0d9488',
+                            light: '#ccfbf1',
+                            accent: '#2dd4bf',
+                            surface: '#f0fdfa',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login-styles.css">
+</head>
+<body class="font-sans bg-gradient-to-br from-brand-surface via-white to-brand-light min-h-screen flex items-center justify-center p-4">
+
+    <!-- Login Container -->
+    <div class="w-full max-w-md">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center gap-2 mb-2">
+                <div class="bg-gradient-to-br from-brand-primary to-brand-accent text-white p-3 rounded-xl shadow-lg">
+                    <i data-lucide="layers" class="w-8 h-8"></i>
+                </div>
+            </div>
+            <h1 class="text-3xl font-bold text-brand-dark">METTBACH</h1>
+            <p class="text-sm text-brand-primary font-medium tracking-widest uppercase">Admin Login</p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="bg-white rounded-2xl shadow-2xl p-8 border border-slate-100">
+            <!-- Error Message -->
+            <div id="error-message" class="hidden mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <div class="flex items-center gap-2 text-red-600">
+                    <i data-lucide="alert-circle" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Ungültiges Passwort</span>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="space-y-5">
+                <div>
+                    <label for="password" class="block text-xs font-bold text-slate-500 uppercase mb-2">Passwort</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-lucide="lock" class="w-5 h-5 text-slate-400"></i>
+                        </div>
+                        <input
+                            type="password"
+                            id="password"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-lg pl-10 pr-12 py-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition"
+                            placeholder="••••••••"
+                            required
+                            autofocus
+                        >
+                        <button
+                            type="button"
+                            id="toggle-password"
+                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-brand-primary transition"
+                        >
+                            <i data-lucide="eye" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button
+                    type="submit"
+                    class="w-full py-4 bg-gradient-to-r from-brand-primary to-brand-accent hover:from-teal-700 hover:to-teal-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                    <span>Anmelden</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <a href="index.html" class="text-sm text-slate-500 hover:text-brand-primary transition">
+                    Zurück zur Website
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer Note -->
+        <p class="text-center text-xs text-slate-400 mt-6">
+            Geschützter Bereich für autorisierte Benutzer
+        </p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="login.js"></script>
+</body>
+</html>

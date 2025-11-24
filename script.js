@@ -1,24 +1,6 @@
 // Initialize Lucide Icons
 lucide.createIcons();
 
-// Logout functionality
-const logoutBtn = document.getElementById('logout-btn');
-const logoutBtnMobile = document.getElementById('logout-btn-mobile');
-
-function handleLogout() {
-    sessionStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('loginTime');
-    window.location.href = 'login.html';
-}
-
-if (logoutBtn) {
-    logoutBtn.addEventListener('click', handleLogout);
-}
-
-if (logoutBtnMobile) {
-    logoutBtnMobile.addEventListener('click', handleLogout);
-}
-
 // Mobile Menu Logic
 const btn = document.getElementById('mobile-menu-btn');
 const menu = document.getElementById('mobile-menu');

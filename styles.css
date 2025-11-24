@@ -1,5 +1,10 @@
 /* Custom Styles for Mettbach Service */
 
+/* Scroll offset for fixed navigation */
+html {
+    scroll-padding-top: 5rem; /* 80px = h-20 der Navigation */
+}
+
 .mobile-menu {
     transition: max-height 0.3s ease-in-out;
     max-height: 0;

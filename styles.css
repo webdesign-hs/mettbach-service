@@ -2,7 +2,13 @@
 
 /* Scroll offset for fixed navigation */
 html {
-    scroll-padding-top: 5rem; /* 80px = h-20 der Navigation */
+    scroll-padding-top: 6rem; /* Mobile: etwas mehr Offset */
+}
+
+@media (min-width: 768px) {
+    html {
+        scroll-padding-top: 5rem; /* Desktop: 80px = h-20 der Navigation */
+    }
 }
 
 .mobile-menu {

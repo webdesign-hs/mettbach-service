@@ -22,18 +22,19 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#0f172a',    // Slate 900
-                            primary: '#0d9488', // Teal 600 - Die Hauptfarbe (Sauberkeit/Ordnung)
-                            light: '#ccfbf1',   // Teal 100 - Akzente
-                            accent: '#2dd4bf',  // Teal 400 - Highlights
-                            surface: '#f0fdfa', // Sehr helles Mint-Grau
+                            dark: '#1e293b',    // Slate 800 - etwas weicher
+                            primary: '#d97706', // Amber 600 - Warmes Orange (Handwerk, Energie)
+                            light: '#fef3c7',   // Amber 100 - Helles Gold
+                            accent: '#f59e0b',  // Amber 500 - Highlights
+                            surface: '#fffbeb', // Sehr warmes Creme
+                            secondary: '#78716c', // Stone 500 - Erdiges Grau
                         }
                     },
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'], // Etwas moderner als Inter
+                        sans: ['Outfit', 'sans-serif'],
                     },
                     boxShadow: {
-                        '3d': '0 10px 40px -10px rgba(13, 148, 136, 0.2)', // Farbiger Schatten für 3D Effekt
+                        '3d': '0 10px 40px -10px rgba(217, 119, 6, 0.25)',
                         'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
                     }
                 }
@@ -60,9 +61,11 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <a href="#" class="flex items-center gap-2 group">
-                    <div class="bg-gradient-to-br from-brand-primary to-brand-accent text-white p-2 rounded-lg shadow-lg shadow-brand-primary/30 group-hover:scale-105 transition-transform duration-300">
-                        <i data-lucide="layers" class="w-6 h-6"></i>
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="bg-gradient-to-br from-brand-primary to-brand-accent text-white w-10 h-10 rounded-xl shadow-lg shadow-brand-primary/30 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
+                        <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 18V6l4 6 4-6 4 6 4-6v12"/>
+                        </svg>
                     </div>
                     <div class="flex flex-col">
                         <span class="text-xl font-bold text-brand-dark tracking-tight leading-none">METTBACH</span>
@@ -74,8 +77,9 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#leistungen" class="text-slate-600 hover:text-brand-primary font-medium transition text-sm">Leistungen</a>
                     <a href="#vorteile" class="text-slate-600 hover:text-brand-primary font-medium transition text-sm">Warum wir?</a>
+                    <a href="#ueber-uns" class="text-slate-600 hover:text-brand-primary font-medium transition text-sm">Über uns</a>
                     <a href="#referenzen" class="text-slate-600 hover:text-brand-primary font-medium transition text-sm">Kunden</a>
-                    <a href="#kontakt" class="bg-gradient-to-r from-brand-primary to-brand-accent hover:from-teal-700 hover:to-teal-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-brand-primary/20 hover:shadow-brand-primary/40 transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 text-sm">
+                    <a href="#kontakt" class="bg-gradient-to-r from-brand-primary to-brand-accent hover:from-amber-700 hover:to-amber-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-brand-primary/20 hover:shadow-brand-primary/40 transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 text-sm">
                         <i data-lucide="phone" class="w-4 h-4"></i>
                         0123 / 456 789
                     </a>
@@ -92,83 +96,50 @@
         <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t border-slate-100">
             <div class="p-4 space-y-2">
                 <a href="#leistungen" class="block px-4 py-3 rounded-lg hover:bg-brand-surface text-brand-dark font-medium">Leistungen</a>
-                <a href="#vorteile" class="block px-4 py-3 rounded-lg hover:bg-brand-surface text-brand-dark font-medium">Vorteile</a>
+                <a href="#vorteile" class="block px-4 py-3 rounded-lg hover:bg-brand-surface text-brand-dark font-medium">Warum wir?</a>
+                <a href="#ueber-uns" class="block px-4 py-3 rounded-lg hover:bg-brand-surface text-brand-dark font-medium">Über uns</a>
+                <a href="#referenzen" class="block px-4 py-3 rounded-lg hover:bg-brand-surface text-brand-dark font-medium">Kunden</a>
                 <a href="#kontakt" class="block px-4 py-3 rounded-lg bg-brand-primary text-white font-bold text-center mt-4">Angebot anfordern</a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION (Innovative Layout) -->
-    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <!-- Background with Gradient Overlay -->
+    <!-- HERO SECTION (Fullscreen with Background Image) -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Team bei der Arbeit" class="w-full h-full object-cover grayscale opacity-20">
-            <!-- Modern Gradient Mesh -->
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-surface via-white/80 to-transparent"></div>
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Entrümpelung und Haushaltsauflösung" class="w-full h-full object-cover">
+            <!-- Dark Overlay for better text readability -->
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/70 via-brand-dark/60 to-brand-dark/80"></div>
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Text Content -->
-                <div class="text-center lg:text-left">
-                    <div class="animate-on-scroll inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-light text-brand-primary text-xs font-bold uppercase tracking-wider mb-6">
-                        <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
-                        Jetzt in Ihrer Region verfügbar
-                    </div>
-                    <h1 class="animate-on-scroll delay-100 text-4xl md:text-6xl font-bold text-brand-dark leading-[1.1] mb-6">
-                        Wir machen <br>
-                        <span class="text-gradient">Platz für Neues.</span>
-                    </h1>
-                    <p class="animate-on-scroll delay-200 text-lg text-slate-600 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                        Mettbach Service ist Ihr Partner für <strong>Haushaltsauflösungen</strong> und <strong>Entrümpelungen</strong> in Hückelhoven. Sauber, diskret und mit fairer Wertanrechnung.
-                    </p>
-                    
-                    <div class="animate-on-scroll delay-300 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#kontakt" class="px-8 py-4 bg-brand-dark text-white rounded-xl font-bold hover:bg-slate-800 shadow-xl shadow-slate-900/10 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
-                            Kostenloses Angebot
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </a>
-                        <a href="tel:0123456789" class="px-8 py-4 bg-white text-brand-dark border border-slate-200 rounded-xl font-bold hover:border-brand-primary hover:text-brand-primary transition-all duration-300 flex items-center justify-center gap-2">
-                            <i data-lucide="phone-call" class="w-4 h-4"></i>
-                            Direkt anrufen
-                        </a>
-                    </div>
-                </div>
+        <!-- Content -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
+            <h1 class="animate-on-scroll text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6">
+                Wir machen <br>
+                <span class="text-brand-accent">Platz für Neues.</span>
+            </h1>
+            <p class="animate-on-scroll delay-100 text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Entrümpelung & Haushaltsauflösung in Hückelhoven und Umgebung.
+            </p>
 
-                <!-- 3D Glass Card "Floater" -->
-                <div class="hidden lg:block relative animate-on-scroll delay-300">
-                    <!-- Decorative blobs behind -->
-                    <div class="absolute -top-10 -right-10 w-64 h-64 bg-brand-accent/20 rounded-full blur-3xl animate-pulse"></div>
-                    <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-brand-primary/20 rounded-full blur-3xl"></div>
-
-                    <!-- The Glass Card -->
-                    <div class="glass rounded-2xl p-8 shadow-3d transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                        <div class="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
-                            <div class="w-12 h-12 rounded-full bg-brand-light flex items-center justify-center text-brand-primary">
-                                <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-brand-dark">Ihr zuverlässiger Partner</h3>
-                                <p class="text-xs text-slate-500">Kompetent & Diskret</p>
-                            </div>
-                        </div>
-                        <ul class="space-y-4">
-                            <li class="flex items-center gap-3">
-                                <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center shrink-0 text-xs">✓</div>
-                                <span class="text-slate-700 font-medium">100% Besenrein Garantie</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center shrink-0 text-xs">✓</div>
-                                <span class="text-slate-700 font-medium">Faire Wertanrechnung</span>
-                            </li>
-                            <li class="flex items-center gap-3">
-                                <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center shrink-0 text-xs">✓</div>
-                                <span class="text-slate-700 font-medium">Keine versteckten Kosten</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="animate-on-scroll delay-200 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#kontakt" class="px-8 py-4 bg-brand-primary hover:bg-brand-accent text-white rounded-xl font-bold shadow-xl shadow-brand-primary/30 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+                    Kostenloses Angebot
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="tel:0123456789" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-xl font-bold hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2">
+                    <i data-lucide="phone-call" class="w-5 h-5"></i>
+                    0123 / 456 789
+                </a>
             </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#leistungen" class="text-white/60 hover:text-white transition-colors">
+                <i data-lucide="chevron-down" class="w-8 h-8"></i>
+            </a>
         </div>
     </header>
 
@@ -178,46 +149,157 @@
             <div class="text-center mb-16 animate-on-scroll">
                 <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Unsere Expertise</span>
                 <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-2">Komplettservice aus einer Hand</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">Von der Entrümpelung bis zur besenreinen Übergabe – wir kümmern uns um alles.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
+            <!-- Hauptleistungen Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Entrümpelung -->
                 <div class="animate-on-scroll delay-100 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
-                    
-                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
-                        <i data-lucide="armchair" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-brand-dark mb-3">Haushaltsauflösung</h3>
-                    <p class="text-slate-500 leading-relaxed text-sm">
-                        Wir lösen komplette Wohnungen und Häuser auf. Diskret, respektvoll und inklusive Demontage von Einbauten und Küchen.
-                    </p>
-                </div>
 
-                <!-- Card 2 -->
-                <div class="animate-on-scroll delay-200 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
-                    
                     <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
                         <i data-lucide="trash-2" class="w-7 h-7"></i>
                     </div>
                     <h3 class="text-xl font-bold text-brand-dark mb-3">Entrümpelung</h3>
-                    <p class="text-slate-500 leading-relaxed text-sm">
-                        Vom Keller bis zum Dachboden. Wir entsorgen Sperrmüll, Unrat und Altlasten fachgerecht und umweltschonend.
+                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
+                        Vom Keller bis zum Dachboden – wir entsorgen Sperrmüll, Unrat und Altlasten fachgerecht und umweltschonend.
                     </p>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Keller-Entrümpelung</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Dachboden-Entrümpelung</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Garagen & Schuppen</li>
+                    </ul>
                 </div>
 
-                <!-- Card 3 -->
+                <!-- Haushaltsauflösung -->
+                <div class="animate-on-scroll delay-200 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
+
+                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
+                        <i data-lucide="home" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Haushaltsauflösung</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
+                        Komplette Auflösung von Wohnungen und Häusern. Diskret, respektvoll und mit fairer Wertanrechnung.
+                    </p>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Komplette Wohnungsräumung</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Nachlassauflösung</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Seniorenumzüge</li>
+                    </ul>
+                </div>
+
+                <!-- Wohnungsauflösung -->
                 <div class="animate-on-scroll delay-300 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
-                    
+
+                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
+                        <i data-lucide="door-open" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Wohnungsauflösung</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
+                        Schnelle und saubere Räumung von Mietwohnungen – ideal für Vermieter, Hausverwaltungen und Privatpersonen.
+                    </p>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Besenreine Übergabe</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Möbeldemontage</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Entsorgungsnachweis</li>
+                    </ul>
+                </div>
+
+                <!-- Geschäfts-/Büroauflösung -->
+                <div class="animate-on-scroll delay-100 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
+
+                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
+                        <i data-lucide="building-2" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Geschäfts- & Büroauflösung</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
+                        Professionelle Räumung von Gewerberäumen, Büros und Lagern – schnell, diskret und mit Rechnung.
+                    </p>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Büromöbel & IT-Entsorgung</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Ladenauflösung</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Lagerräumung</li>
+                    </ul>
+                </div>
+
+                <!-- Sperrmüllabholung -->
+                <div class="animate-on-scroll delay-200 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
+
+                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
+                        <i data-lucide="truck" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Sperrmüllabholung</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
+                        Flexible Abholung von Sperrmüll und Altmöbeln – wir kommen zu Ihrem Wunschtermin.
+                    </p>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Sofas, Schränke & Betten</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Elektrogeräte</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Kurzfristige Termine</li>
+                    </ul>
+                </div>
+
+                <!-- Instandsetzungen -->
+                <div class="animate-on-scroll delay-300 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
+
                     <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
                         <i data-lucide="hammer" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-brand-dark mb-3">Entkernung & Rückbau</h3>
-                    <p class="text-slate-500 leading-relaxed text-sm">
-                        Entfernung von Tapeten, Bodenbelägen und Fliesen. Wir bereiten das Objekt perfekt für die Renovierung oder Übergabe vor.
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Instandsetzungen</h3>
+                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
+                        Wir bereiten Räume für die Übergabe oder Renovierung vor – sauber und gründlich.
                     </p>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Nägel, Schrauben & Dübel entfernen</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Löcher verschließen</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Tapeten entfernen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Instandsetzungen Detail-Box -->
+            <div class="animate-on-scroll bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-slate-100">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <div class="w-16 h-16 rounded-2xl bg-brand-light flex items-center justify-center text-brand-primary mb-4">
+                            <i data-lucide="wrench" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark mb-2">Instandsetzungen im Detail</h3>
+                        <p class="text-slate-500">Alles was Sie für eine saubere Übergabe brauchen.</p>
+                    </div>
+                    <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-3">
+                            <h4 class="font-bold text-brand-dark flex items-center gap-2">
+                                <i data-lucide="paintbrush" class="w-5 h-5 text-brand-primary"></i>
+                                Wände & Decken
+                            </h4>
+                            <ul class="text-sm text-slate-600 space-y-1 ml-7">
+                                <li>• Nägel, Schrauben & Dübel entfernen</li>
+                                <li>• Löcher verschließen</li>
+                                <li>• Tapeten entfernen</li>
+                                <li>• Maler- und Lackierarbeiten</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="font-bold text-brand-dark flex items-center gap-2">
+                                <i data-lucide="layers" class="w-5 h-5 text-brand-primary"></i>
+                                Bodenbeläge entfernen
+                            </h4>
+                            <ul class="text-sm text-slate-600 space-y-1 ml-7">
+                                <li>• Teppich & Teppichfliesen</li>
+                                <li>• Bodenfliesen</li>
+                                <li>• Parkett & Laminat</li>
+                                <li>• Linoleum & PVC</li>
+                                <li>• Trittschalldämmung</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -266,7 +348,7 @@
     </section>
 
     <!-- PROCESS (Interactive-looking) -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl font-bold text-brand-dark">Der Ablauf</h2>
@@ -299,6 +381,125 @@
                         </div>
                         <h4 class="text-lg font-bold text-brand-dark">Besenreine Übergabe</h4>
                         <p class="text-sm text-slate-500 mt-2">Wir räumen, fegen und übergeben das Objekt pünktlich.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INHABER / ÜBER UNS SECTION -->
+    <section id="ueber-uns" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Bild-Bereich -->
+                <div class="animate-on-scroll relative">
+                    <div class="relative">
+                        <!-- Dekorative Elemente -->
+                        <div class="absolute -top-4 -left-4 w-72 h-72 bg-brand-light rounded-2xl"></div>
+                        <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-brand-primary/20 rounded-2xl"></div>
+
+                        <!-- Hauptbild -->
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Inhaber Mettbach Service" class="w-full h-[500px] object-cover">
+                            <!-- Overlay mit Name -->
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-6">
+                                <p class="text-white font-bold text-xl">Marvin Mettbach</p>
+                                <p class="text-brand-accent">Inhaber & Geschäftsführer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text-Bereich -->
+                <div class="animate-on-scroll delay-200">
+                    <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Über uns</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-2 mb-6">Persönlich. Zuverlässig. <br><span class="text-gradient">Aus der Region.</span></h2>
+
+                    <div class="space-y-4 text-slate-600 leading-relaxed">
+                        <p>
+                            Als Inhaber von <strong>Mettbach Service</strong> stehe ich persönlich für Qualität und Zuverlässigkeit. Mit meinem Team aus erfahrenen Mitarbeitern kümmern wir uns um Ihre Entrümpelung – ob privat oder gewerblich.
+                        </p>
+                        <p>
+                            Was uns antreibt? Wir wissen, dass eine Entrümpelung oder Haushaltsauflösung oft mit emotionalen Situationen verbunden ist. Deshalb arbeiten wir nicht nur gründlich, sondern auch mit dem nötigen Fingerspitzengefühl.
+                        </p>
+                        <p>
+                            <strong>Unser Versprechen:</strong> Faire Preise, pünktliche Termine und eine besenreine Übergabe. Bei uns gibt es keine versteckten Kosten – was wir vereinbaren, das gilt.
+                        </p>
+                    </div>
+
+                    <!-- Highlights -->
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 p-4 bg-brand-surface rounded-xl">
+                            <div class="w-12 h-12 rounded-full bg-brand-light flex items-center justify-center text-brand-primary">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-brand-dark">Lokal</p>
+                                <p class="text-sm text-slate-500">Aus Hückelhoven</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-4 bg-brand-surface rounded-xl">
+                            <div class="w-12 h-12 rounded-full bg-brand-light flex items-center justify-center text-brand-primary">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-brand-dark">Erfahren</p>
+                                <p class="text-sm text-slate-500">Eingespieltes Team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BILDERGALERIE / UNSERE ARBEIT -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Einblicke</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-2">Unsere Arbeit in Bildern</h2>
+                <p class="text-slate-500 mt-4">Von der Entrümpelung bis zur besenreinen Übergabe.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Bild 1 - Groß -->
+                <div class="animate-on-scroll delay-100 col-span-2 row-span-2 relative rounded-2xl overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Entrümpelung Vorher" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-bold">Haushaltsauflösung</p>
+                    </div>
+                </div>
+
+                <!-- Bild 2 -->
+                <div class="animate-on-scroll delay-200 relative rounded-2xl overflow-hidden group aspect-square">
+                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Team bei der Arbeit" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <p class="text-white font-bold text-sm">Professionelles Team</p>
+                    </div>
+                </div>
+
+                <!-- Bild 3 -->
+                <div class="animate-on-scroll delay-300 relative rounded-2xl overflow-hidden group aspect-square">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Saubere Wohnung" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <p class="text-white font-bold text-sm">Besenrein übergeben</p>
+                    </div>
+                </div>
+
+                <!-- Bild 4 -->
+                <div class="animate-on-scroll delay-100 relative rounded-2xl overflow-hidden group aspect-square">
+                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Renovierte Wohnung" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <p class="text-white font-bold text-sm">Fertig für Neues</p>
+                    </div>
+                </div>
+
+                <!-- Bild 5 -->
+                <div class="animate-on-scroll delay-200 relative rounded-2xl overflow-hidden group aspect-square">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Leerer Raum" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <p class="text-white font-bold text-sm">Komplett geräumt</p>
                     </div>
                 </div>
             </div>
@@ -418,9 +619,14 @@
                         <div class="space-y-1">
                             <label class="text-xs font-bold text-slate-500 uppercase">Worum geht es?</label>
                             <select class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition">
-                                <option>Haushaltsauflösung (Privat)</option>
-                                <option>Firmenauflösung (Gewerbe)</option>
+                                <option value="">Bitte auswählen...</option>
                                 <option>Entrümpelung</option>
+                                <option>Haushaltsauflösung</option>
+                                <option>Wohnungsauflösung</option>
+                                <option>Geschäfts- / Büroauflösung</option>
+                                <option>Keller-Entrümpelung</option>
+                                <option>Sperrmüllabholung</option>
+                                <option>Instandsetzungen</option>
                                 <option>Sonstiges</option>
                             </select>
                         </div>
@@ -428,7 +634,7 @@
                             <label class="text-xs font-bold text-slate-500 uppercase">Nachricht</label>
                             <textarea rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition" placeholder="Objektgröße, Stockwerk, Besonderheiten..."></textarea>
                         </div>
-                        <button type="button" class="w-full py-4 bg-gradient-to-r from-brand-primary to-brand-accent hover:from-teal-700 hover:to-teal-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        <button type="button" class="w-full py-4 bg-gradient-to-r from-brand-primary to-brand-accent hover:from-amber-700 hover:to-amber-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                             Jetzt Anfrage absenden
                         </button>
                         <p class="text-xs text-center text-slate-400 mt-4">Ihre Daten werden streng vertraulich behandelt.</p>
@@ -443,8 +649,10 @@
     <footer class="bg-brand-dark text-slate-500 py-12 border-t border-slate-800 text-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-2 text-white">
-                <div class="bg-brand-primary p-1 rounded">
-                    <i data-lucide="layers" class="w-5 h-5"></i>
+                <div class="bg-brand-primary w-8 h-8 rounded-lg flex items-center justify-center">
+                    <svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 18V6l4 6 4-6 4 6 4-6v12"/>
+                    </svg>
                 </div>
                 <span class="font-bold tracking-tight text-lg">METTBACH</span>
             </div>

@@ -47,3 +47,67 @@ const observer = new IntersectionObserver((entries, observer) => {
 document.querySelectorAll('.animate-on-scroll').forEach((element) => {
     observer.observe(element);
 });
+
+// Hero Video Control
+const videoContainer = document.getElementById('video-container');
+const heroVideo = document.getElementById('hero-video');
+const playButtonOverlay = document.getElementById('play-button-overlay');
+
+if (videoContainer && heroVideo && playButtonOverlay) {
+    // Play video on click
+    playButtonOverlay.addEventListener('click', () => {
+        heroVideo.play();
+        playButtonOverlay.style.opacity = '0';
+        setTimeout(() => {
+            playButtonOverlay.style.display = 'none';
+        }, 300);
+    });
+
+    // Show overlay again when video ends
+    heroVideo.addEventListener('ended', () => {
+        playButtonOverlay.style.display = 'flex';
+        setTimeout(() => {
+            playButtonOverlay.style.opacity = '1';
+        }, 10);
+    });
+
+    // Hide overlay when video is playing
+    heroVideo.addEventListener('play', () => {
+        playButtonOverlay.style.opacity = '0';
+        setTimeout(() => {
+            playButtonOverlay.style.display = 'none';
+        }, 300);
+    });
+
+    // Show overlay when video is paused
+    heroVideo.addEventListener('pause', () => {
+        if (heroVideo.currentTime > 0 && !heroVideo.ended) {
+            playButtonOverlay.style.display = 'flex';
+            setTimeout(() => {
+                playButtonOverlay.style.opacity = '1';
+            }, 10);
+        }
+    });
+}
+
+// Price Toggle Functionality
+document.querySelectorAll('.price-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.toggle-icon');
+
+        // Toggle content
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            // Change plus to minus
+            icon.setAttribute('data-lucide', 'minus');
+        } else {
+            content.classList.add('hidden');
+            // Change minus to plus
+            icon.setAttribute('data-lucide', 'plus');
+        }
+
+        // Reinitialize lucide icons
+        lucide.createIcons();
+    });
+});

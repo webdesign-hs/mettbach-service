@@ -8,10 +8,7 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icons (Lucide) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -104,204 +101,207 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Fullscreen with Background Image) -->
-    <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Background Image -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Entrümpelung und Haushaltsauflösung" class="w-full h-full object-cover">
-            <!-- Dark Overlay for better text readability -->
-            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/70 via-brand-dark/60 to-brand-dark/80"></div>
-        </div>
+    <!-- HERO SECTION (Split Layout: Text Left, Video Right) -->
+    <header class="relative min-h-screen flex items-center bg-brand-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        <!-- Content -->
-        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
-            <h1 class="animate-on-scroll text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6">
-                Wir machen <br>
-                <span class="text-brand-accent">Platz für Neues.</span>
-            </h1>
-            <p class="animate-on-scroll delay-100 text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Entrümpelung & Haushaltsauflösung in Hückelhoven und Umgebung.
-            </p>
+                <!-- Left Side: Text Content -->
+                <div class="animate-on-scroll text-white z-10">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6">
+                        Wir machen <br>
+                        <span class="text-brand-accent">Platz für Neues.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-white/80 mb-10 leading-relaxed">
+                        Entrümpelung & Haushaltsauflösung in Hückelhoven und Umgebung.
+                    </p>
 
-            <div class="animate-on-scroll delay-200 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#kontakt" class="px-8 py-4 bg-brand-primary hover:bg-brand-accent text-white rounded-xl font-bold shadow-xl shadow-brand-primary/30 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
-                    Kostenloses Angebot
-                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                </a>
-                <a href="tel:0123456789" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-xl font-bold hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2">
-                    <i data-lucide="phone-call" class="w-5 h-5"></i>
-                    0123 / 456 789
-                </a>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#kontakt" class="px-8 py-4 bg-brand-primary hover:bg-brand-accent text-white rounded-xl font-bold shadow-xl shadow-brand-primary/30 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+                            Kostenloses Angebot
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="tel:0123456789" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-xl font-bold hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2">
+                            <i data-lucide="phone-call" class="w-5 h-5"></i>
+                            0123 / 456 789
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Side: Video -->
+                <div class="animate-on-scroll delay-200 relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group cursor-pointer" id="video-container">
+                        <video
+                            id="hero-video"
+                            class="w-full h-auto rounded-2xl"
+                            controls
+                            playsinline
+                            poster="">
+                            <source src="public/erklaervideo.mp4" type="video/mp4">
+                            Ihr Browser unterstützt das Video-Tag nicht.
+                        </video>
+                        <!-- Play Button Overlay -->
+                        <div id="play-button-overlay" class="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm transition-opacity duration-300">
+                            <div class="w-20 h-20 rounded-full bg-brand-primary/90 hover:bg-brand-primary flex items-center justify-center shadow-2xl transform hover:scale-110 transition-all duration-300">
+                                <i data-lucide="play" class="w-10 h-10 text-white ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
             <a href="#leistungen" class="text-white/60 hover:text-white transition-colors">
                 <i data-lucide="chevron-down" class="w-8 h-8"></i>
             </a>
         </div>
     </header>
 
-    <!-- CARDS / LEISTUNGEN (3D Effect) -->
+    <!-- UNSERE LEISTUNGEN -->
     <section id="leistungen" class="py-20 bg-slate-50 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 animate-on-scroll">
-                <span class="text-brand-primary font-bold tracking-wider uppercase text-sm">Unsere Expertise</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-2">Komplettservice aus einer Hand</h2>
-                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">Von der Entrümpelung bis zur besenreinen Übergabe – wir kümmern uns um alles.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark">Unsere Leistungen</h2>
             </div>
 
-            <!-- Hauptleistungen Grid -->
+            <!-- Leistungen Grid (3 Spalten) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                <!-- Entrümpelung -->
-                <div class="animate-on-scroll delay-100 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
+                <!-- Besenreine Übergabe -->
+                <div class="animate-on-scroll text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="sparkles" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Besenreine Übergabe</h3>
+                    <p class="text-slate-600 leading-relaxed">Ein Wort - Sauber - das wünschen sich nicht nur die Vermieter eines Objektes sondern auch Sie wenn Sie einmal frische Luft und in Ihre vier Wände bringen möchten.</p>
+                </div>
 
-                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
-                        <i data-lucide="trash-2" class="w-7 h-7"></i>
+                <!-- Bei einem Todesfall -->
+                <div class="animate-on-scroll delay-100 text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="heart-handshake" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Bei einem Todesfall</h3>
+                    <p class="text-slate-600 leading-relaxed">Die Entrümpelung von Gegenständen in einer Wohnung oder einem Haus einer verstorbenen Person wird von uns immer mit großem Respekt erbracht.</p>
+                </div>
+
+                <!-- Abriss Arbeiten -->
+                <div class="animate-on-scroll delay-200 text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="home" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Abriss Arbeiten</h3>
+                    <p class="text-slate-600 leading-relaxed">Wir übernehmen auch Abrissarbeiten für Sie schnell, sauber und konform. Der angefallene Schutt wird dann von uns auch fachgerecht entsorgt.</p>
+                </div>
+
+                <!-- Großes Team -->
+                <div class="animate-on-scroll delay-300 text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="users" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Großes Team</h3>
+                    <p class="text-slate-600 leading-relaxed">Unser großes Team ist nicht nur schnell und professionell, sondern ermöglicht uns auch große Flächen schnell zu Entrümpeln und besenrein zu übergeben.</p>
+                </div>
+
+                <!-- Wertanrechnung -->
+                <div class="animate-on-scroll text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="euro" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Wertanrechnung</h3>
+                    <p class="text-slate-600 leading-relaxed">Sie haben bei einer Entrümpelung immer die Möglichkeit gewisse Wertgegenstände an uns zu verkaufen. Diese werden dann am ende gegengerechnet.</p>
+                </div>
+
+                <!-- Fachgerechte Entsorgung -->
+                <div class="animate-on-scroll delay-100 text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="recycle" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Fachgerechte Entsorgung</h3>
+                    <p class="text-slate-600 leading-relaxed">Wir stehen hinter dem Umweltschutz und Recyceln jeden anfallenden Abfall nach Norm und bringen diese auch zu den unterschiedlichen Höfen.</p>
+                </div>
+
+                <!-- Entrümpelung -->
+                <div class="animate-on-scroll delay-200 text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="trash-2" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
                     </div>
                     <h3 class="text-xl font-bold text-brand-dark mb-3">Entrümpelung</h3>
-                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
-                        Vom Keller bis zum Dachboden – wir entsorgen Sperrmüll, Unrat und Altlasten fachgerecht und umweltschonend.
-                    </p>
-                    <ul class="text-sm text-slate-600 space-y-2">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Keller-Entrümpelung</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Dachboden-Entrümpelung</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Garagen & Schuppen</li>
-                    </ul>
+                    <p class="text-slate-600 leading-relaxed">Vom Keller bis zum Dachboden – wir entsorgen Sperrmüll, Unrat und Altlasten fachgerecht und umweltschonend.</p>
                 </div>
 
                 <!-- Haushaltsauflösung -->
-                <div class="animate-on-scroll delay-200 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
-
-                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
-                        <i data-lucide="home" class="w-7 h-7"></i>
+                <div class="animate-on-scroll delay-300 text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="home" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
                     </div>
                     <h3 class="text-xl font-bold text-brand-dark mb-3">Haushaltsauflösung</h3>
-                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
-                        Komplette Auflösung von Wohnungen und Häusern. Diskret, respektvoll und mit fairer Wertanrechnung.
-                    </p>
-                    <ul class="text-sm text-slate-600 space-y-2">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Komplette Wohnungsräumung</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Nachlassauflösung</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Seniorenumzüge</li>
-                    </ul>
+                    <p class="text-slate-600 leading-relaxed">Komplette Auflösung von Wohnungen und Häusern. Diskret, respektvoll und mit fairer Wertanrechnung.</p>
                 </div>
 
-                <!-- Wohnungsauflösung -->
-                <div class="animate-on-scroll delay-300 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
-
-                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
-                        <i data-lucide="door-open" class="w-7 h-7"></i>
+                <!-- Innerhalb weniger Stunden -->
+                <div class="animate-on-scroll text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="clock" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-brand-dark mb-3">Wohnungsauflösung</h3>
-                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
-                        Schnelle und saubere Räumung von Mietwohnungen – ideal für Vermieter, Hausverwaltungen und Privatpersonen.
-                    </p>
-                    <ul class="text-sm text-slate-600 space-y-2">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Besenreine Übergabe</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Möbeldemontage</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Entsorgungsnachweis</li>
-                    </ul>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Innerhalb weniger Stunden</h3>
+                    <p class="text-slate-600 leading-relaxed">Wenn wir anfangen sorgen wir für eine schnelle Umsetzung der Entrümpelung und beenden diese zügig. So können Sie sich zurücklehnen.</p>
                 </div>
 
-                <!-- Geschäfts-/Büroauflösung -->
-                <div class="animate-on-scroll delay-100 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
+                <!-- Egal wie voll es ist -->
+                <div class="animate-on-scroll delay-100 text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="archive" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Egal wie voll es ist</h3>
+                    <p class="text-slate-600 leading-relaxed">Egal ob es sich um einen kleinen Keller mit 3 Regalen oder ein Lager handelt welches bis zur Decke voll ist. Wir sorgen für eine vollständige und schnelle Entrümpelung.</p>
+                </div>
 
-                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
-                        <i data-lucide="building-2" class="w-7 h-7"></i>
+                <!-- Schädlingsbekämpfung -->
+                <div class="animate-on-scroll delay-200 text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="bug" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Schädlingsbekämpfung</h3>
+                    <p class="text-slate-600 leading-relaxed">Es kommt manchmal vor das sich Ratten, Mäuse oder Kakerlaken in den Lagerräumen oder dem Dachboden verstecken. Diese werden durch einen Kammerjäger beseitigt.</p>
+                </div>
+
+                <!-- Geschäfts- & Büroauflösung -->
+                <div class="animate-on-scroll delay-300 text-center bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 flex items-center justify-center">
+                            <i data-lucide="building-2" class="w-16 h-16 text-brand-dark"></i>
+                        </div>
                     </div>
                     <h3 class="text-xl font-bold text-brand-dark mb-3">Geschäfts- & Büroauflösung</h3>
-                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
-                        Professionelle Räumung von Gewerberäumen, Büros und Lagern – schnell, diskret und mit Rechnung.
-                    </p>
-                    <ul class="text-sm text-slate-600 space-y-2">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Büromöbel & IT-Entsorgung</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Ladenauflösung</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Lagerräumung</li>
-                    </ul>
-                </div>
-
-                <!-- Sperrmüllabholung -->
-                <div class="animate-on-scroll delay-200 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
-
-                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
-                        <i data-lucide="truck" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-brand-dark mb-3">Sperrmüllabholung</h3>
-                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
-                        Flexible Abholung von Sperrmüll und Altmöbeln – wir kommen zu Ihrem Wunschtermin.
-                    </p>
-                    <ul class="text-sm text-slate-600 space-y-2">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Sofas, Schränke & Betten</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Elektrogeräte</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Kurzfristige Termine</li>
-                    </ul>
-                </div>
-
-                <!-- Instandsetzungen -->
-                <div class="animate-on-scroll delay-300 group bg-white rounded-2xl p-8 shadow-sm hover:shadow-3d border border-slate-100 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-brand-primary group-hover:scale-110"></div>
-
-                    <div class="relative w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-brand-primary mb-6 group-hover:text-brand-dark transition-colors">
-                        <i data-lucide="hammer" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-brand-dark mb-3">Instandsetzungen</h3>
-                    <p class="text-slate-500 leading-relaxed text-sm mb-4">
-                        Wir bereiten Räume für die Übergabe oder Renovierung vor – sauber und gründlich.
-                    </p>
-                    <ul class="text-sm text-slate-600 space-y-2">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Nägel, Schrauben & Dübel entfernen</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Löcher verschließen</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-primary"></i> Tapeten entfernen</li>
-                    </ul>
+                    <p class="text-slate-600 leading-relaxed">Professionelle Räumung von Gewerberäumen, Büros und Lagern – schnell, diskret und mit Rechnung.</p>
                 </div>
             </div>
 
-            <!-- Instandsetzungen Detail-Box -->
-            <div class="animate-on-scroll bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-slate-100">
-                <div class="flex flex-col md:flex-row gap-8 items-start">
-                    <div class="md:w-1/3">
-                        <div class="w-16 h-16 rounded-2xl bg-brand-light flex items-center justify-center text-brand-primary mb-4">
-                            <i data-lucide="wrench" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-brand-dark mb-2">Instandsetzungen im Detail</h3>
-                        <p class="text-slate-500">Alles was Sie für eine saubere Übergabe brauchen.</p>
-                    </div>
-                    <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div class="space-y-3">
-                            <h4 class="font-bold text-brand-dark flex items-center gap-2">
-                                <i data-lucide="paintbrush" class="w-5 h-5 text-brand-primary"></i>
-                                Wände & Decken
-                            </h4>
-                            <ul class="text-sm text-slate-600 space-y-1 ml-7">
-                                <li>• Nägel, Schrauben & Dübel entfernen</li>
-                                <li>• Löcher verschließen</li>
-                                <li>• Tapeten entfernen</li>
-                                <li>• Maler- und Lackierarbeiten</li>
-                            </ul>
-                        </div>
-                        <div class="space-y-3">
-                            <h4 class="font-bold text-brand-dark flex items-center gap-2">
-                                <i data-lucide="layers" class="w-5 h-5 text-brand-primary"></i>
-                                Bodenbeläge entfernen
-                            </h4>
-                            <ul class="text-sm text-slate-600 space-y-1 ml-7">
-                                <li>• Teppich & Teppichfliesen</li>
-                                <li>• Bodenfliesen</li>
-                                <li>• Parkett & Laminat</li>
-                                <li>• Linoleum & PVC</li>
-                                <li>• Trittschalldämmung</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -382,6 +382,177 @@
                         <h4 class="text-lg font-bold text-brand-dark">Besenreine Übergabe</h4>
                         <p class="text-sm text-slate-500 mt-2">Wir räumen, fegen und übergeben das Objekt pünktlich.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREISBEISPIELE -->
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Preisbeispiele</h2>
+                <p class="text-slate-600">Transparente Preise für Ihre Entrümpelung – faire Kalkulation inkl. Wertanrechnung</p>
+            </div>
+
+            <!-- Preisliste -->
+            <div class="space-y-4">
+                <!-- Haus entrümpeln -->
+                <div class="animate-on-scroll bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
+                    <button class="price-toggle w-full p-6 flex items-center justify-between hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="home" class="w-6 h-6 text-brand-primary"></i>
+                            <span class="font-bold text-lg text-brand-dark">Haus entrümpeln</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl font-bold text-brand-primary">ab 799,00€</span>
+                            <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
+                        </div>
+                    </button>
+                    <div class="price-content hidden px-6 pb-6">
+                        <p class="text-slate-600 leading-relaxed">
+                            Der Vorteil eines Hauses ist, es bietet viel Platz. Der Nachteil, in seinen Ecken und Winkeln, in Schränken und Kommoden stauen sich schnell unnötige Dinge an. Unsere Entrümpelung-Teams zaubern aus Deinem Haus schnell wieder eine Wohlfühloase.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Wohnung entrümpeln -->
+                <div class="animate-on-scroll delay-100 bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
+                    <button class="price-toggle w-full p-6 flex items-center justify-between hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="door-open" class="w-6 h-6 text-brand-primary"></i>
+                            <span class="font-bold text-lg text-brand-dark">Wohnung entrümpeln</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl font-bold text-brand-primary">ab 450,00€</span>
+                            <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
+                        </div>
+                    </button>
+                    <div class="price-content hidden px-6 pb-6">
+                        <p class="text-slate-600 leading-relaxed">
+                            Schnelle und professionelle Wohnungsräumung. Wir übernehmen die komplette Entrümpelung Ihrer Wohnung – diskret, zuverlässig und mit besenreiner Übergabe.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dachboden Entrümpelung -->
+                <div class="animate-on-scroll delay-200 bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
+                    <button class="price-toggle w-full p-6 flex items-center justify-between hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="triangle" class="w-6 h-6 text-brand-primary"></i>
+                            <span class="font-bold text-lg text-brand-dark">Dachboden Entrümpelung</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl font-bold text-brand-primary">ab 120,00€</span>
+                            <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
+                        </div>
+                    </button>
+                    <div class="price-content hidden px-6 pb-6">
+                        <p class="text-slate-600 leading-relaxed">
+                            Professionelle Dachbodenräumung mit Abtransport und fachgerechter Entsorgung aller Gegenstände.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Keller entrümpeln -->
+                <div class="animate-on-scroll delay-300 bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
+                    <button class="price-toggle w-full p-6 flex items-center justify-between hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="archive" class="w-6 h-6 text-brand-primary"></i>
+                            <span class="font-bold text-lg text-brand-dark">Keller entrümpeln</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl font-bold text-brand-primary">ab 120,00€</span>
+                            <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
+                        </div>
+                    </button>
+                    <div class="price-content hidden px-6 pb-6">
+                        <p class="text-slate-600 leading-relaxed">
+                            Kellerräumung vom Fachmann – wir entrümpeln Ihren Keller schnell und zuverlässig.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Garage entrümpeln -->
+                <div class="animate-on-scroll bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
+                    <button class="price-toggle w-full p-6 flex items-center justify-between hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="warehouse" class="w-6 h-6 text-brand-primary"></i>
+                            <span class="font-bold text-lg text-brand-dark">Garage entrümpeln</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl font-bold text-brand-primary">ab 120,00€</span>
+                            <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
+                        </div>
+                    </button>
+                    <div class="price-content hidden px-6 pb-6">
+                        <p class="text-slate-600 leading-relaxed">
+                            Garagenräumung mit fachgerechter Entsorgung aller Materialien und Gegenstände.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Garten entrümpeln -->
+                <div class="animate-on-scroll delay-100 bg-slate-50 rounded-xl overflow-hidden border border-slate-200">
+                    <button class="price-toggle w-full p-6 flex items-center justify-between hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="trees" class="w-6 h-6 text-brand-primary"></i>
+                            <span class="font-bold text-lg text-brand-dark">Garten entrümpeln</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl font-bold text-brand-primary">ab 600,00€</span>
+                            <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
+                        </div>
+                    </button>
+                    <div class="price-content hidden px-6 pb-6">
+                        <p class="text-slate-600 leading-relaxed">
+                            Gartenräumung inkl. Entsorgung von Gartenabfällen, alten Möbeln und sonstigen Gegenständen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WhatsApp Business Button -->
+            <div class="mt-12 text-center animate-on-scroll">
+                <a href="https://wa.me/491234567890" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-xl font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    Jetzt per WhatsApp Business kontaktieren
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- VERSICHERUNGEN & ZERTIFIKATE -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Versichert & Zertifiziert</h2>
+                <p class="text-slate-600">Für Ihre Sicherheit sind wir vollständig versichert und zertifiziert</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- BG Verkehr -->
+                <div class="animate-on-scroll bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 text-center">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center">
+                            <i data-lucide="shield-check" class="w-12 h-12 text-brand-primary"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-2">BG Verkehr</h3>
+                    <p class="text-slate-600">Berufsgenossenschaft für Transport und Verkehrswirtschaft</p>
+                </div>
+
+                <!-- IHK -->
+                <div class="animate-on-scroll delay-100 bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 text-center">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center">
+                            <i data-lucide="award" class="w-12 h-12 text-brand-primary"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-2">IHK Mitglied</h3>
+                    <p class="text-slate-600">Industrie- und Handelskammer zertifiziert</p>
                 </div>
             </div>
         </div>
@@ -552,6 +723,109 @@
         </div>
     </section>
 
+    <!-- STANDORTE / EINSATZGEBIETE -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Kreis Heinsberg -->
+            <div class="mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-8 text-center">Entrümpelung im Kreis Heinsberg:</h2>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Erkelenz</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Heinsberg</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Übach-Palenberg</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Wegberg</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Selfkant</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Geilenkirchen</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Hückelhoven</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Wassenberg</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Gangelt</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Waldfeucht</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nähere Umgebung -->
+            <div class="animate-on-scroll delay-200">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-8 text-center">Entrümpelung in der Nähe:</h2>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Mönchengladbach</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Viersen</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Schwalmtal</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Jüchen</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Aachen</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Neuss</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Willich</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Niederkrüchten</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Grevenbroich</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-brand-surface transition-colors group">
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-brand-primary group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-brand-dark font-medium">Düren</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- CONTACT HERO (Dark Modern) -->
     <section id="kontakt" class="relative py-24 bg-brand-dark overflow-hidden">
         <!-- Abstract Shapes -->
@@ -667,6 +941,15 @@
             <p class="text-slate-600">&copy; 2025 Mettbach Service.</p>
         </div>
     </footer>
+
+    <!-- WhatsApp FAB (Floating Action Button) -->
+    <a href="https://wa.me/491234567890" target="_blank" class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-full shadow-2xl hover:shadow-3xl flex items-center justify-center transform hover:scale-110 transition-all duration-300 group">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <div class="absolute -top-2 -left-2 w-4 h-4 bg-red-500 rounded-full animate-ping"></div>
+        <div class="absolute -top-2 -left-2 w-4 h-4 bg-red-500 rounded-full"></div>
+    </a>
 
     <!-- Scripts -->
     <script src="script.js"></script>

@@ -6,37 +6,14 @@
     <title>Datenschutzerklärung | Mettbach Entrümpelung & Service</title>
     <meta name="description" content="Datenschutzerklärung von Mettbach Entrümpelung & Service">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="public/favicon.png">
+
+    <!-- Tailwind CSS + Custom Styles -->
+    <link rel="stylesheet" href="dist/output.css">
 
     <!-- Icons (Lucide) - Lokal -->
     <script src="lucide.min.js"></script>
-
-    <!-- Custom Config for Brand Colors -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#000000',
-                            primary: '#a32638',
-                            light: '#fce8eb',
-                            accent: '#c93545',
-                            surface: '#fff5f6',
-                            secondary: '#4a4a4a',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
 
     <!-- Login Check Script -->
     <script>
@@ -282,19 +259,25 @@
 
     <!-- FOOTER -->
     <footer class="bg-brand-dark text-slate-500 py-12 border-t border-slate-800 text-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <img src="public/logo-footer.png" alt="Mettbach Logo" class="h-8 w-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <img src="public/logo-footer.png" alt="Mettbach Logo" class="h-8 w-auto">
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-8 font-medium">
+                    <a href="index.html#leistungen" class="hover:text-brand-primary transition-colors">Leistungen</a>
+                    <a href="index.html#vorteile" class="hover:text-brand-primary transition-colors">Über uns</a>
+                    <a href="impressum.html" class="hover:text-brand-primary transition-colors">Impressum</a>
+                    <a href="datenschutz.html" class="hover:text-brand-primary transition-colors">Datenschutz</a>
+                </div>
+
+                <p class="text-slate-600">&copy; 2025 Mettbach Service.</p>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-8 font-medium">
-                <a href="index.html#leistungen" class="hover:text-brand-primary transition-colors">Leistungen</a>
-                <a href="index.html#vorteile" class="hover:text-brand-primary transition-colors">Über uns</a>
-                <a href="impressum.html" class="hover:text-brand-primary transition-colors">Impressum</a>
-                <a href="datenschutz.html" class="hover:text-brand-primary transition-colors">Datenschutz</a>
+            <div class="mt-6 pt-6 border-t border-slate-800 text-center">
+                <p class="text-slate-600 text-xs">Dieser Webauftritt wurde erstellt von <a href="https://webdesign-hs.de" target="_blank" rel="noopener noreferrer" class="hover:text-brand-primary transition-colors">webdesign-hs.de</a></p>
             </div>
-
-            <p class="text-slate-600">&copy; 2025 Mettbach Service.</p>
         </div>
     </footer>
 

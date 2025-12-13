@@ -5,42 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mettbach Entrümpelung & Service</title>
     <meta name="description" content="Professionelle Entrümpelung, Haushaltsauflösung und Entkernung. Wir schaffen Platz – sauber, diskret und mit Wertanrechnung.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="public/favicon.png">
+
+    <!-- Tailwind CSS + Custom Styles -->
+    <link rel="stylesheet" href="dist/output.css">
 
     <!-- Icons (Lucide) - Lokal -->
     <script src="lucide.min.js"></script>
-
-    <!-- Custom Config for Brand Colors -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#000000',    // Schwarz aus Logo
-                            primary: '#a32638', // Rot aus Logo
-                            light: '#fce8eb',   // Helles Rot/Rosa
-                            accent: '#c93545',  // Helleres Rot für Highlights
-                            surface: '#fff5f6', // Sehr helles Rosa
-                            secondary: '#4a4a4a', // Dunkelgrau
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        '3d': '0 10px 40px -10px rgba(163, 38, 56, 0.25)',
-                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
 
     <!-- Login Check Script -->
     <script>
@@ -97,7 +70,7 @@
     <header class="relative min-h-screen flex items-center bg-brand-dark overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Entrümpelung Hintergrund" class="w-full h-full object-cover">
+            <img src="public/hero.jpg" alt="Entrümpelung Hintergrund" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50"></div>
         </div>
 
@@ -559,7 +532,7 @@
 
                         <!-- Hauptbild -->
                         <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Inhaber Mettbach Service" class="w-full h-[500px] object-cover">
+                            <img src="public/ueber-uns-placeholder.jpg" alt="Inhaber Marvin Mettbach" class="w-full h-[500px] object-cover">
                             <!-- Overlay mit Name -->
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-6">
                                 <p class="text-white font-bold text-xl">Marvin Mettbach</p>
@@ -865,36 +838,44 @@
                 <!-- Modern Form Card -->
                 <div class="animate-on-scroll delay-200 bg-white rounded-3xl p-8 md:p-10 shadow-2xl">
                     <h3 class="text-2xl font-bold text-brand-dark mb-6">Kostenloses Angebot</h3>
-                    <form class="space-y-5">
+
+                    <!-- Formular-Nachricht (Erfolg/Fehler) -->
+                    <div id="form-message" class="hidden p-4 rounded-lg border mb-5"></div>
+
+                    <form id="contact-form" class="space-y-5">
                         <div class="grid grid-cols-2 gap-4">
                             <div class="space-y-1">
-                                <label class="text-xs font-bold text-slate-500 uppercase">Name</label>
-                                <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition" placeholder="Max Mustermann">
+                                <label for="contact-name" class="text-xs font-bold text-slate-500 uppercase">Name *</label>
+                                <input type="text" id="contact-name" name="name" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition" placeholder="Max Mustermann">
                             </div>
                             <div class="space-y-1">
-                                <label class="text-xs font-bold text-slate-500 uppercase">Telefon</label>
-                                <input type="tel" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition" placeholder="0170...">
+                                <label for="contact-phone" class="text-xs font-bold text-slate-500 uppercase">Telefon *</label>
+                                <input type="tel" id="contact-phone" name="phone" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition" placeholder="0170...">
                             </div>
                         </div>
                         <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-500 uppercase">Worum geht es?</label>
-                            <select class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition">
+                            <label for="contact-service" class="text-xs font-bold text-slate-500 uppercase">Worum geht es? *</label>
+                            <select id="contact-service" name="service" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition">
                                 <option value="">Bitte auswählen...</option>
-                                <option>Entrümpelung</option>
-                                <option>Haushaltsauflösung</option>
-                                <option>Wohnungsauflösung</option>
-                                <option>Geschäfts- / Büroauflösung</option>
-                                <option>Keller-Entrümpelung</option>
-                                <option>Sperrmüllabholung</option>
-                                <option>Instandsetzungen</option>
-                                <option>Sonstiges</option>
+                                <option value="Entrümpelung">Entrümpelung</option>
+                                <option value="Haushaltsauflösung">Haushaltsauflösung</option>
+                                <option value="Wohnungsauflösung">Wohnungsauflösung</option>
+                                <option value="Geschäfts- / Büroauflösung">Geschäfts- / Büroauflösung</option>
+                                <option value="Keller-Entrümpelung">Keller-Entrümpelung</option>
+                                <option value="Sperrmüllabholung">Sperrmüllabholung</option>
+                                <option value="Instandsetzungen">Instandsetzungen</option>
+                                <option value="Sonstiges">Sonstiges</option>
                             </select>
                         </div>
                         <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-500 uppercase">Nachricht</label>
-                            <textarea rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition" placeholder="Objektgröße, Stockwerk, Besonderheiten..."></textarea>
+                            <label for="contact-message" class="text-xs font-bold text-slate-500 uppercase">Nachricht *</label>
+                            <textarea id="contact-message" name="message" rows="3" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition" placeholder="Objektgröße, Stockwerk, Besonderheiten..."></textarea>
                         </div>
-                        <button type="button" class="w-full py-4 bg-gradient-to-r from-brand-primary to-brand-accent hover:from-red-800 hover:to-red-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+
+                        <!-- Honeypot Feld (versteckt) - Spam-Schutz -->
+                        <input type="text" id="contact-website" name="website" class="hidden" tabindex="-1" autocomplete="off">
+
+                        <button type="submit" id="submit-button" class="w-full py-4 bg-gradient-to-r from-brand-primary to-brand-accent hover:from-red-800 hover:to-red-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                             Jetzt Anfrage absenden
                         </button>
                         <p class="text-xs text-center text-slate-400 mt-4">Ihre Daten werden streng vertraulich behandelt.</p>
@@ -907,19 +888,25 @@
 
     <!-- FOOTER -->
     <footer class="bg-brand-dark text-slate-500 py-12 border-t border-slate-800 text-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <img src="public/logo-footer.png" alt="Mettbach Logo" class="h-8 w-auto">
-            </div>
-            
-            <div class="flex flex-wrap justify-center gap-8 font-medium">
-                <a href="#leistungen" class="hover:text-brand-primary transition-colors">Leistungen</a>
-                <a href="#vorteile" class="hover:text-brand-primary transition-colors">Über uns</a>
-                <a href="impressum.html" class="hover:text-brand-primary transition-colors">Impressum</a>
-                <a href="datenschutz.html" class="hover:text-brand-primary transition-colors">Datenschutz</a>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <img src="public/logo-footer.png" alt="Mettbach Logo" class="h-8 w-auto">
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-8 font-medium">
+                    <a href="#leistungen" class="hover:text-brand-primary transition-colors">Leistungen</a>
+                    <a href="#vorteile" class="hover:text-brand-primary transition-colors">Über uns</a>
+                    <a href="impressum.html" class="hover:text-brand-primary transition-colors">Impressum</a>
+                    <a href="datenschutz.html" class="hover:text-brand-primary transition-colors">Datenschutz</a>
+                </div>
+
+                <p class="text-slate-600">&copy; 2025 Mettbach Service.</p>
             </div>
 
-            <p class="text-slate-600">&copy; 2025 Mettbach Service.</p>
+            <div class="mt-6 pt-6 border-t border-slate-800 text-center">
+                <p class="text-slate-600 text-xs">Dieser Webauftritt wurde erstellt von <a href="https://webdesign-hs.de" target="_blank" rel="noopener noreferrer" class="hover:text-brand-primary transition-colors">webdesign-hs.de</a></p>
+            </div>
         </div>
     </footer>
 

@@ -1,0 +1,68 @@
+# Apache Server Konfiguration
+# Mettbach Entrümpelung & Service
+
+# ========================================
+# HTTPS Weiterleitung (SSL erzwingen)
+# ========================================
+# TODO: Aktivieren sobald SSL-Zertifikat installiert ist!
+# RewriteEngine On
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ========================================
+# Sicherheit
+# ========================================
+
+# PHP-Fehler nicht anzeigen (Produktion)
+php_flag display_errors off
+
+# Verzeichnis-Listing deaktivieren
+Options -Indexes
+
+# .git Verzeichnis schützen
+RedirectMatch 404 /\.git
+
+# Sensible Dateien schützen
+<FilesMatch "^(contact-config\.php|\.htaccess|package\.json|tailwind\.config\.js|SETUP-ANLEITUNG\.md)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ========================================
+# Performance & Caching
+# ========================================
+
+# Komprimierung aktivieren
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Browser-Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Bilder
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+
+    # CSS & JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+
+    # Fonts
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+</IfModule>
+
+# ========================================
+# Fehlerseiten (optional)
+# ========================================
+# ErrorDocument 404 /404.html
+# ErrorDocument 500 /500.html
+
+# ========================================
+# Charset UTF-8
+# ========================================
+AddDefaultCharset UTF-8

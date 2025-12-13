@@ -1,0 +1,15 @@
+{
+  "name": "mettbach-website",
+  "version": "1.0.0",
+  "description": "Mettbach Entrümpelung & Service Website",
+  "scripts": {
+    "build:css": "tailwindcss -i ./styles.css -o ./dist/output.css --minify",
+    "watch:css": "tailwindcss -i ./styles.css -o ./dist/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

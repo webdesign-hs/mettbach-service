@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mettbach Entrümpelung & Service | Platz für Neues</title>
+    <title>Mettbach Entrümpelung & Service</title>
     <meta name="description" content="Professionelle Entrümpelung, Haushaltsauflösung und Entkernung. Wir schaffen Platz – sauber, diskret und mit Wertanrechnung.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Icons (Lucide) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Icons (Lucide) - Lokal -->
+    <script src="lucide.min.js"></script>
 
     <!-- Custom Config for Brand Colors -->
     <script>
@@ -19,19 +19,19 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#1e293b',    // Slate 800 - etwas weicher
-                            primary: '#d97706', // Amber 600 - Warmes Orange (Handwerk, Energie)
-                            light: '#fef3c7',   // Amber 100 - Helles Gold
-                            accent: '#f59e0b',  // Amber 500 - Highlights
-                            surface: '#fffbeb', // Sehr warmes Creme
-                            secondary: '#78716c', // Stone 500 - Erdiges Grau
+                            dark: '#000000',    // Schwarz aus Logo
+                            primary: '#a32638', // Rot aus Logo
+                            light: '#fce8eb',   // Helles Rot/Rosa
+                            accent: '#c93545',  // Helleres Rot für Highlights
+                            surface: '#fff5f6', // Sehr helles Rosa
+                            secondary: '#4a4a4a', // Dunkelgrau
                         }
                     },
                     fontFamily: {
                         sans: ['Outfit', 'sans-serif'],
                     },
                     boxShadow: {
-                        '3d': '0 10px 40px -10px rgba(217, 119, 6, 0.25)',
+                        '3d': '0 10px 40px -10px rgba(163, 38, 56, 0.25)',
                         'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
                     }
                 }
@@ -59,15 +59,7 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <a href="#" class="flex items-center gap-3 group">
-                    <div class="bg-gradient-to-br from-brand-primary to-brand-accent text-white w-10 h-10 rounded-xl shadow-lg shadow-brand-primary/30 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
-                        <svg viewBox="0 0 24 24" fill="none" class="w-6 h-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 18V6l4 6 4-6 4 6 4-6v12"/>
-                        </svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-xl font-bold text-brand-dark tracking-tight leading-none">METTBACH</span>
-                        <span class="text-xs text-brand-primary font-medium tracking-widest uppercase mt-0.5">Service</span>
-                    </div>
+                    <img src="public/logo-header.png" alt="Mettbach Entrümpelung & Service Logo" class="h-12 w-auto group-hover:scale-105 transition-transform duration-300">
                 </a>
 
                 <!-- Desktop Menu -->
@@ -76,7 +68,7 @@
                     <a href="#vorteile" class="text-slate-600 hover:text-brand-primary font-medium transition text-sm">Warum wir?</a>
                     <a href="#ueber-uns" class="text-slate-600 hover:text-brand-primary font-medium transition text-sm">Über uns</a>
                     <a href="#referenzen" class="text-slate-600 hover:text-brand-primary font-medium transition text-sm">Kunden</a>
-                    <a href="#kontakt" class="bg-gradient-to-r from-brand-primary to-brand-accent hover:from-amber-700 hover:to-amber-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-brand-primary/20 hover:shadow-brand-primary/40 transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 text-sm">
+                    <a href="#kontakt" class="bg-gradient-to-r from-brand-primary to-brand-accent hover:from-red-800 hover:to-red-700 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg shadow-brand-primary/20 hover:shadow-brand-primary/40 transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 text-sm">
                         <i data-lucide="phone" class="w-4 h-4"></i>
                         0123 / 456 789
                     </a>
@@ -101,12 +93,18 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Split Layout: Text Left, Video Right) -->
+    <!-- HERO SECTION -->
     <header class="relative min-h-screen flex items-center bg-brand-dark overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Entrümpelung Hintergrund" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50"></div>
+        </div>
 
-                <!-- Left Side: Text Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+
+                <!-- Text Content -->
                 <div class="animate-on-scroll text-white z-10">
                     <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6">
                         Wir machen <br>
@@ -116,7 +114,7 @@
                         Entrümpelung & Haushaltsauflösung in Hückelhoven und Umgebung.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <a href="#kontakt" class="px-8 py-4 bg-brand-primary hover:bg-brand-accent text-white rounded-xl font-bold shadow-xl shadow-brand-primary/30 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
                             Kostenloses Angebot
                             <i data-lucide="arrow-right" class="w-5 h-5"></i>
@@ -125,27 +123,6 @@
                             <i data-lucide="phone-call" class="w-5 h-5"></i>
                             0123 / 456 789
                         </a>
-                    </div>
-                </div>
-
-                <!-- Right Side: Video -->
-                <div class="animate-on-scroll delay-200 relative">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group cursor-pointer" id="video-container">
-                        <video
-                            id="hero-video"
-                            class="w-full h-auto rounded-2xl"
-                            controls
-                            playsinline
-                            poster="">
-                            <source src="public/erklaervideo.mp4" type="video/mp4">
-                            Ihr Browser unterstützt das Video-Tag nicht.
-                        </video>
-                        <!-- Play Button Overlay -->
-                        <div id="play-button-overlay" class="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm transition-opacity duration-300">
-                            <div class="w-20 h-20 rounded-full bg-brand-primary/90 hover:bg-brand-primary flex items-center justify-center shadow-2xl transform hover:scale-110 transition-all duration-300">
-                                <i data-lucide="play" class="w-10 h-10 text-white ml-1"></i>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -409,7 +386,7 @@
                             <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
                         </div>
                     </button>
-                    <div class="price-content hidden px-6 pb-6">
+                    <div class="price-content hidden px-6 pt-4 pb-6">
                         <p class="text-slate-600 leading-relaxed">
                             Der Vorteil eines Hauses ist, es bietet viel Platz. Der Nachteil, in seinen Ecken und Winkeln, in Schränken und Kommoden stauen sich schnell unnötige Dinge an. Unsere Entrümpelung-Teams zaubern aus Deinem Haus schnell wieder eine Wohlfühloase.
                         </p>
@@ -428,7 +405,7 @@
                             <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
                         </div>
                     </button>
-                    <div class="price-content hidden px-6 pb-6">
+                    <div class="price-content hidden px-6 pt-4 pb-6">
                         <p class="text-slate-600 leading-relaxed">
                             Schnelle und professionelle Wohnungsräumung. Wir übernehmen die komplette Entrümpelung Ihrer Wohnung – diskret, zuverlässig und mit besenreiner Übergabe.
                         </p>
@@ -447,7 +424,7 @@
                             <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
                         </div>
                     </button>
-                    <div class="price-content hidden px-6 pb-6">
+                    <div class="price-content hidden px-6 pt-4 pb-6">
                         <p class="text-slate-600 leading-relaxed">
                             Professionelle Dachbodenräumung mit Abtransport und fachgerechter Entsorgung aller Gegenstände.
                         </p>
@@ -466,7 +443,7 @@
                             <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
                         </div>
                     </button>
-                    <div class="price-content hidden px-6 pb-6">
+                    <div class="price-content hidden px-6 pt-4 pb-6">
                         <p class="text-slate-600 leading-relaxed">
                             Kellerräumung vom Fachmann – wir entrümpeln Ihren Keller schnell und zuverlässig.
                         </p>
@@ -485,7 +462,7 @@
                             <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
                         </div>
                     </button>
-                    <div class="price-content hidden px-6 pb-6">
+                    <div class="price-content hidden px-6 pt-4 pb-6">
                         <p class="text-slate-600 leading-relaxed">
                             Garagenräumung mit fachgerechter Entsorgung aller Materialien und Gegenstände.
                         </p>
@@ -504,7 +481,7 @@
                             <i data-lucide="plus" class="w-6 h-6 text-brand-primary toggle-icon"></i>
                         </div>
                     </button>
-                    <div class="price-content hidden px-6 pb-6">
+                    <div class="price-content hidden px-6 pt-4 pb-6">
                         <p class="text-slate-600 leading-relaxed">
                             Gartenräumung inkl. Entsorgung von Gartenabfällen, alten Möbeln und sonstigen Gegenständen.
                         </p>
@@ -683,7 +660,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Review 1 -->
                 <div class="animate-on-scroll delay-100 bg-white p-8 rounded-xl shadow-sm border border-slate-100">
-                    <div class="flex text-amber-400 mb-4">★★★★★</div>
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
                     <p class="text-slate-600 italic text-sm mb-6">"Endlich mal ein Handwerker, der pünktlich ist. Die Anrechnung der Küche war sehr fair. Kann ich nur empfehlen."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500">M</div>
@@ -695,7 +672,7 @@
                 </div>
                 <!-- Review 2 -->
                 <div class="animate-on-scroll delay-200 bg-white p-8 rounded-xl shadow-sm border border-slate-100">
-                    <div class="flex text-amber-400 mb-4">★★★★★</div>
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
                     <p class="text-slate-600 italic text-sm mb-6">"Als Hausverwaltung arbeiten wir schon lange mit Mettbach zusammen. Immer zuverlässig bei Wohnungsauflösungen."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center font-bold text-brand-primary">S</div>
@@ -707,7 +684,7 @@
                 </div>
                 <!-- Review 3 -->
                 <div class="animate-on-scroll delay-300 bg-white p-8 rounded-xl shadow-sm border border-slate-100">
-                    <div class="flex text-amber-400 mb-4">★★★★★</div>
+                    <div class="flex text-yellow-400 mb-4">★★★★★</div>
                     <p class="text-slate-600 italic text-sm mb-6">"Sehr einfühlsam beim Ausräumen der Wohnung meiner Tante. Das Team hat super gearbeitet."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center font-bold text-slate-500">T</div>
@@ -906,7 +883,7 @@
                             <label class="text-xs font-bold text-slate-500 uppercase">Nachricht</label>
                             <textarea rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition" placeholder="Objektgröße, Stockwerk, Besonderheiten..."></textarea>
                         </div>
-                        <button type="button" class="w-full py-4 bg-gradient-to-r from-brand-primary to-brand-accent hover:from-amber-700 hover:to-amber-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        <button type="button" class="w-full py-4 bg-gradient-to-r from-brand-primary to-brand-accent hover:from-red-800 hover:to-red-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                             Jetzt Anfrage absenden
                         </button>
                         <p class="text-xs text-center text-slate-400 mt-4">Ihre Daten werden streng vertraulich behandelt.</p>
@@ -920,20 +897,15 @@
     <!-- FOOTER -->
     <footer class="bg-brand-dark text-slate-500 py-12 border-t border-slate-800 text-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2 text-white">
-                <div class="bg-brand-primary w-8 h-8 rounded-lg flex items-center justify-center">
-                    <svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 18V6l4 6 4-6 4 6 4-6v12"/>
-                    </svg>
-                </div>
-                <span class="font-bold tracking-tight text-lg">METTBACH</span>
+            <div class="flex items-center gap-2">
+                <img src="public/logo-footer.png" alt="Mettbach Logo" class="h-8 w-auto">
             </div>
             
             <div class="flex flex-wrap justify-center gap-8 font-medium">
                 <a href="#leistungen" class="hover:text-brand-primary transition-colors">Leistungen</a>
                 <a href="#vorteile" class="hover:text-brand-primary transition-colors">Über uns</a>
-                <a href="#" class="hover:text-brand-primary transition-colors">Impressum</a>
-                <a href="#" class="hover:text-brand-primary transition-colors">Datenschutz</a>
+                <a href="impressum.html" class="hover:text-brand-primary transition-colors">Impressum</a>
+                <a href="datenschutz.html" class="hover:text-brand-primary transition-colors">Datenschutz</a>
             </div>
 
             <p class="text-slate-600">&copy; 2025 Mettbach Service.</p>

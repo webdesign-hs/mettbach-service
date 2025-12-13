@@ -105,3 +105,10 @@ html {
 .delay-300 {
     transition-delay: 300ms;
 }
+
+/* Silbentrennung für deutsche Wörter */
+.hyphens-auto {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}

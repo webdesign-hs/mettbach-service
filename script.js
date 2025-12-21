@@ -166,7 +166,7 @@ if (contactForm) {
 
         } catch (error) {
             console.error('Fehler beim Senden:', error);
-            showFormMessage('error', 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an: 0123 / 456 789');
+            showFormMessage('error', 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an: 02433 / 3027044');
         } finally {
             // Button wieder aktivieren
             submitButton.disabled = false;

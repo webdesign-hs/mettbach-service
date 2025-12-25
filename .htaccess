@@ -14,7 +14,9 @@
 # ========================================
 
 # PHP-Fehler nicht anzeigen (Produktion)
-php_flag display_errors off
+# HINWEIS: php_flag kann auf Ionos Shared Hosting zu Fehlern führen
+# Stattdessen in php.ini oder im Ionos-Panel konfigurieren
+# php_flag display_errors off
 
 # Verzeichnis-Listing deaktivieren
 Options -Indexes
@@ -22,10 +24,9 @@ Options -Indexes
 # .git Verzeichnis schützen
 RedirectMatch 404 /\.git
 
-# Sensible Dateien schützen
+# Sensible Dateien schützen (Apache 2.4 Syntax)
 <FilesMatch "^(contact-config\.php|\.htaccess|package\.json|tailwind\.config\.js|SETUP-ANLEITUNG\.md)$">
-    Order allow,deny
-    Deny from all
+    Require all denied
 </FilesMatch>
 
 # ========================================

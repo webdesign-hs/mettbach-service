@@ -13,10 +13,10 @@
 define('CONTACT_EMAIL', 'info@mettbach-service24.de');
 
 // Absender-E-Mail (Wird als "Von" angezeigt)
-define('SENDER_EMAIL', 'noreply@mettbach-service24.de');
+define('SENDER_EMAIL', 'info@mettbach-service24.de');
 
 // Absender-Name
-define('SENDER_NAME', 'Mettbach Entrümpelung & Service - Website');
+define('SENDER_NAME', 'Mettbach Entrümpelservice24 - Website');
 
 // E-Mail-Betreff
 define('EMAIL_SUBJECT', 'Neue Kontaktanfrage - Mettbach Service');

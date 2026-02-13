@@ -119,48 +119,108 @@ document.querySelectorAll('.price-toggle').forEach(button => {
 const contactForm = document.getElementById('contact-form');
 const formMessage = document.getElementById('form-message');
 const submitButton = document.getElementById('submit-button');
-const formTimestamp = Date.now(); // Für Spam-Schutz
+const formTimestamp = Date.now();
+
+// Rate Limiting (clientseitig)
+let lastSubmitTime = 0;
+const RATE_LIMIT_MS = 30000; // 30 Sekunden zwischen Anfragen
+
+// Input Sanitization
+function sanitizeInput(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML.trim();
+}
+
+// Validierung
+function validateName(name) {
+    return name.length >= 2 && name.length <= 100 && /^[a-zA-ZäöüÄÖÜßéèêëàáâãåæçíìîïñóòôõøúùûýÿ\s\-'.]+$/.test(name);
+}
+
+function validatePhone(phone) {
+    const cleaned = phone.replace(/[\s\-\/().]+/g, '');
+    return cleaned.length >= 6 && cleaned.length <= 20 && /^[+]?[0-9]+$/.test(cleaned);
+}
+
+function validateMessage(msg) {
+    return msg.length >= 10 && msg.length <= 2000;
+}
+
+const validServices = ['Entrümpelung', 'Haushaltsauflösung', 'Wohnungsauflösung', 'Geschäfts- / Büroauflösung', 'Keller-Entrümpelung', 'Sperrmüllabholung', 'Instandsetzungen', 'Sonstiges'];
 
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Button deaktivieren während des Sendens
+        // Rate Limiting prüfen
+        const now = Date.now();
+        if (now - lastSubmitTime < RATE_LIMIT_MS) {
+            const waitSec = Math.ceil((RATE_LIMIT_MS - (now - lastSubmitTime)) / 1000);
+            showFormMessage('error', `Bitte warten Sie noch ${waitSec} Sekunden, bevor Sie erneut absenden.`);
+            return;
+        }
+
+        // Button deaktivieren
         submitButton.disabled = true;
         submitButton.innerHTML = '<i data-lucide="loader" class="w-5 h-5 animate-spin inline-block mr-2"></i> Wird gesendet...';
         lucide.createIcons();
 
-        // Formular-Daten sammeln
+        // DSGVO-Checkbox prüfen
+        const privacyCheckbox = document.getElementById('contact-privacy');
+        const privacyError = document.getElementById('privacy-error');
+
+        if (!privacyCheckbox.checked) {
+            privacyError.classList.remove('hidden');
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Jetzt Anfrage absenden';
+            return;
+        }
+        privacyError.classList.add('hidden');
+
+        // Werte auslesen & sanitizen
+        const name = sanitizeInput(document.getElementById('contact-name').value);
+        const phone = sanitizeInput(document.getElementById('contact-phone').value);
+        const service = document.getElementById('contact-service').value;
+        const message = sanitizeInput(document.getElementById('contact-message').value);
+
+        // Client-Validierung
+        const errors = [];
+        if (!validateName(name)) errors.push('Bitte geben Sie einen gültigen Namen ein (mind. 2 Buchstaben).');
+        if (!validatePhone(phone)) errors.push('Bitte geben Sie eine gültige Telefonnummer ein.');
+        if (!validServices.includes(service)) errors.push('Bitte wählen Sie einen gültigen Service.');
+        if (!validateMessage(message)) errors.push('Nachricht muss zwischen 10 und 2000 Zeichen lang sein.');
+
+        if (errors.length > 0) {
+            showFormMessage('error', errors.join(' '));
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Jetzt Anfrage absenden';
+            return;
+        }
+
         const formData = {
-            name: document.getElementById('contact-name').value.trim(),
-            phone: document.getElementById('contact-phone').value.trim(),
-            service: document.getElementById('contact-service').value,
-            message: document.getElementById('contact-message').value.trim(),
+            name,
+            phone,
+            service,
+            message,
+            privacy: privacyCheckbox.checked,
             timestamp: formTimestamp,
-            website: document.getElementById('contact-website').value // Honeypot
+            website: document.getElementById('contact-website').value
         };
 
         try {
-            // TODO: Sobald Domain & Hosting verfügbar, diese URL anpassen!
-            // Aktuell auf 'send-contact.php' gesetzt
             const response = await fetch('send-contact.php', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
             const result = await response.json();
 
             if (result.success) {
-                // Erfolgs-Nachricht anzeigen
                 showFormMessage('success', result.message);
-
-                // Formular zurücksetzen
                 contactForm.reset();
+                lastSubmitTime = Date.now();
             } else {
-                // Fehler-Nachricht anzeigen
                 showFormMessage('error', result.message);
             }
 
@@ -168,7 +228,6 @@ if (contactForm) {
             console.error('Fehler beim Senden:', error);
             showFormMessage('error', 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an: 02433 / 3027044');
         } finally {
-            // Button wieder aktivieren
             submitButton.disabled = false;
             submitButton.innerHTML = 'Jetzt Anfrage absenden';
         }

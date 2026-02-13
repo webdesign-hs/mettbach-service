@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /login.html
+Disallow: /coming-soon/
+Disallow: /send-contact.php
+Disallow: /contact-config.php
+
+Sitemap: https://www.mettbach-service24.de/sitemap.xml

@@ -3,6 +3,7 @@
  * Kontaktformular Backend
  *
  * Verarbeitet die Formular-Anfragen und sendet E-Mails
+ * Mit Input-Validierung, Sanitization und Rate Limiting
  */
 
 // Konfiguration laden
@@ -10,7 +11,7 @@ require_once 'contact-config.php';
 
 // CORS Headers (für AJAX-Anfragen)
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: https://www.mettbach-service24.de');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
@@ -21,54 +22,119 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Eingabedaten abrufen
+// ========================================
+// RATE LIMITING (IP-basiert, Dateisystem)
+// ========================================
+$rateLimitDir = sys_get_temp_dir() . '/mettbach_ratelimit';
+if (!is_dir($rateLimitDir)) {
+    mkdir($rateLimitDir, 0700, true);
+}
+
+$clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$rateLimitFile = $rateLimitDir . '/' . md5($clientIP) . '.json';
+$rateLimitSeconds = 30;
+$maxRequestsPerHour = 10;
+
+if (file_exists($rateLimitFile)) {
+    $rateLimitData = json_decode(file_get_contents($rateLimitFile), true);
+
+    // Letzte Anfrage prüfen
+    if (isset($rateLimitData['last_request'])) {
+        $timeSinceLast = time() - $rateLimitData['last_request'];
+        if ($timeSinceLast < $rateLimitSeconds) {
+            $wait = $rateLimitSeconds - $timeSinceLast;
+            http_response_code(429);
+            echo json_encode(['success' => false, 'message' => "Bitte warten Sie noch {$wait} Sekunden, bevor Sie erneut absenden."]);
+            exit;
+        }
+    }
+
+    // Stündliches Limit prüfen
+    $oneHourAgo = time() - 3600;
+    $recentRequests = array_filter($rateLimitData['requests'] ?? [], function($t) use ($oneHourAgo) {
+        return $t > $oneHourAgo;
+    });
+
+    if (count($recentRequests) >= $maxRequestsPerHour) {
+        http_response_code(429);
+        echo json_encode(['success' => false, 'message' => 'Zu viele Anfragen. Bitte versuchen Sie es später erneut oder rufen Sie uns an: 02433 / 3027044']);
+        exit;
+    }
+} else {
+    $rateLimitData = ['requests' => []];
+}
+
+// ========================================
+// EINGABEDATEN
+// ========================================
 $input = json_decode(file_get_contents('php://input'), true);
 
-// Fallback für normale Form-Submissions
 if (empty($input)) {
     $input = $_POST;
 }
 
-// Pflichtfelder prüfen
-$name = trim($input['name'] ?? '');
-$phone = trim($input['phone'] ?? '');
-$service = trim($input['service'] ?? '');
-$message = trim($input['message'] ?? '');
-$timestamp = $input['timestamp'] ?? 0;
-$honeypot = $input['website'] ?? ''; // Honeypot-Feld (sollte leer sein)
+// ========================================
+// SANITIZATION
+// ========================================
+$name     = htmlspecialchars(strip_tags(trim($input['name'] ?? '')), ENT_QUOTES, 'UTF-8');
+$phone    = htmlspecialchars(strip_tags(trim($input['phone'] ?? '')), ENT_QUOTES, 'UTF-8');
+$service  = htmlspecialchars(strip_tags(trim($input['service'] ?? '')), ENT_QUOTES, 'UTF-8');
+$message  = htmlspecialchars(strip_tags(trim($input['message'] ?? '')), ENT_QUOTES, 'UTF-8');
+$timestamp = intval($input['timestamp'] ?? 0);
+$honeypot = $input['website'] ?? '';
+$privacy  = filter_var($input['privacy'] ?? false, FILTER_VALIDATE_BOOLEAN);
 
-// Validierung
+// ========================================
+// VALIDIERUNG
+// ========================================
 $errors = [];
 
-if (empty($name)) {
-    $errors[] = 'Bitte geben Sie Ihren Namen ein.';
+// DSGVO
+if (!$privacy) {
+    $errors[] = 'Bitte stimmen Sie der Datenschutzerklärung zu.';
 }
 
-if (empty($phone)) {
-    $errors[] = 'Bitte geben Sie Ihre Telefonnummer ein.';
+// Name: 2-100 Zeichen, nur Buchstaben/Leerzeichen/Bindestriche
+if (empty($name) || mb_strlen($name) < 2 || mb_strlen($name) > 100) {
+    $errors[] = 'Bitte geben Sie einen gültigen Namen ein (2-100 Zeichen).';
+} elseif (!preg_match('/^[\p{L}\s\-\'.]+$/u', strip_tags(html_entity_decode($name)))) {
+    $errors[] = 'Der Name enthält ungültige Zeichen.';
 }
 
-if (empty($service)) {
-    $errors[] = 'Bitte wählen Sie einen Service aus.';
+// Telefon: 6-20 Ziffern (nach Bereinigung)
+$phoneClean = preg_replace('/[\s\-\/().+]+/', '', $phone);
+if (empty($phone) || strlen($phoneClean) < 6 || strlen($phoneClean) > 20) {
+    $errors[] = 'Bitte geben Sie eine gültige Telefonnummer ein.';
+} elseif (!preg_match('/^[0-9]+$/', $phoneClean)) {
+    $errors[] = 'Die Telefonnummer enthält ungültige Zeichen.';
 }
 
-if (empty($message)) {
-    $errors[] = 'Bitte geben Sie eine Nachricht ein.';
+// Service: nur erlaubte Werte
+$validServices = [
+    'Entrümpelung', 'Haushaltsauflösung', 'Wohnungsauflösung',
+    'Geschäfts- / Büroauflösung', 'Keller-Entrümpelung',
+    'Sperrmüllabholung', 'Instandsetzungen', 'Sonstiges'
+];
+if (empty($service) || !in_array(html_entity_decode($service), $validServices)) {
+    $errors[] = 'Bitte wählen Sie einen gültigen Service aus.';
+}
+
+// Nachricht: 10-2000 Zeichen
+if (empty($message) || mb_strlen($message) < 10 || mb_strlen($message) > 2000) {
+    $errors[] = 'Die Nachricht muss zwischen 10 und 2000 Zeichen lang sein.';
 }
 
 // Spam-Schutz: Honeypot-Feld
 if (ENABLE_SPAM_PROTECTION && !empty($honeypot)) {
-    // Bot erkannt
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Spam erkannt.']);
     exit;
 }
 
-// Spam-Schutz: Zeitprüfung
+// Spam-Schutz: Zeitprüfung (Formular zu schnell abgeschickt)
 if (ENABLE_SPAM_PROTECTION && $timestamp > 0) {
-    $submitTime = time() - $timestamp;
-    if ($submitTime < MIN_SUBMIT_TIME) {
-        // Zu schnell abgeschickt
+    $submitDuration = (time() * 1000 - $timestamp) / 1000;
+    if ($submitDuration < MIN_SUBMIT_TIME) {
         http_response_code(400);
         echo json_encode(['success' => false, 'message' => 'Anfrage zu schnell abgeschickt.']);
         exit;
@@ -82,32 +148,52 @@ if (!empty($errors)) {
     exit;
 }
 
-// E-Mail-Nachricht erstellen
+// ========================================
+// RATE LIMIT UPDATE
+// ========================================
+$rateLimitData['last_request'] = time();
+$rateLimitData['requests'][] = time();
+// Alte Einträge bereinigen (älter als 1 Stunde)
+$oneHourAgo = time() - 3600;
+$rateLimitData['requests'] = array_values(array_filter($rateLimitData['requests'], function($t) use ($oneHourAgo) {
+    return $t > $oneHourAgo;
+}));
+file_put_contents($rateLimitFile, json_encode($rateLimitData), LOCK_EX);
+
+// ========================================
+// E-MAIL SENDEN
+// ========================================
+
+// Für die E-Mail HTML-Entities zurück dekodieren (plain text E-Mail)
+$emailName = html_entity_decode($name, ENT_QUOTES, 'UTF-8');
+$emailPhone = html_entity_decode($phone, ENT_QUOTES, 'UTF-8');
+$emailService = html_entity_decode($service, ENT_QUOTES, 'UTF-8');
+$emailMessage = html_entity_decode($message, ENT_QUOTES, 'UTF-8');
+
 $emailBody = "
 Neue Kontaktanfrage über die Website
 =====================================
 
-Name: {$name}
-Telefon: {$phone}
-Service: {$service}
+Name: {$emailName}
+Telefon: {$emailPhone}
+Service: {$emailService}
 
 Nachricht:
-{$message}
+{$emailMessage}
 
 ---
-Gesendet von: {$_SERVER['REMOTE_ADDR']}
+DSGVO-Einwilligung: Ja
+Gesendet von: {$clientIP}
 Datum/Zeit: " . date('d.m.Y H:i:s') . "
 ";
 
-// E-Mail-Header
 $headers = [
     'From: ' . SENDER_NAME . ' <' . SENDER_EMAIL . '>',
-    'Reply-To: ' . $phone,
+    'Reply-To: ' . $emailPhone,
     'X-Mailer: PHP/' . phpversion(),
     'Content-Type: text/plain; charset=utf-8'
 ];
 
-// E-Mail senden
 $mailSent = mail(
     CONTACT_EMAIL,
     EMAIL_SUBJECT,
@@ -115,7 +201,6 @@ $mailSent = mail(
     implode("\r\n", $headers)
 );
 
-// Antwort senden
 if ($mailSent) {
     http_response_code(200);
     echo json_encode([
